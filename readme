@@ -1,0 +1,73 @@
+
+TASK 1 : scrape real data from MASS511 - https://mass511.com/
+
+OVERVIEW:
+
+What is Mass511:
+	Alternative app for google.maps
+	Live traffic
+	It gives min 1, max 2 Route options for given two points
+	Have check boxes for map features
+
+Which Way?
+	Api Key
+	Selenium Webdriver 
+Coding?
+	Make EDA with the given data by teammate
+	X, and Y coordinates are entered to origin and destination points
+	Scrape the all given data ( total time, total distance, breakdown of the time and distance for each leg)
+	More than 3,000 origin & destination scraped
+
+
+
+Mass511 is the alternative live traffic map of the https://www.google.com/maps .
+There are 2 ways to scrape from the site. 
+
+A ) API key: you have to apply from the site to get an api key in order to scrape data. This way is not quick solution
+because it is possible to wait for several weeks for approval of the api key.  
+
+B ) Selenium Web Driver: it is a library of the Python . you can find more info from the following link https://www.guru99.com/selenium-python.html . Here you would need to enter coordinates and then to click the button. So 
+Selenium does do this job. 
+
+I found the following link in order to create the Python codes - https://medium.freecodecamp.org/better-web-scraping-in-python-with-selenium-beautiful-soup-and-pandas-d6390592e251 .
+
+Before start to code you must complete these 2 below stages:
+1- You have to download chrome or firefox and save in to file where jupyter notebook at.
+Go and find your chrome version (I used the chrome not firefox) from https://sites.google.com/a/chromium.org/chromedriver/downloads and then select the convenient version and download it. Then save in your file where jupyter notebook at.
+2- if it doesn't work then double click on the chrome driver and it will tell you how to identify it to your computer.
+
+Now it is ready to scrape !
+
+If you can hit the site by Selenium codes the next stage is scrape data by BeautifulSoup.
+I scrape the 4 main columns from the site as order 'from to where' , 'time' ,'distance' and 'direction' which is breakdown of the total time and distance.
+You can enter the full address or coordinates(longitude and latitude) to A and B boxes. Here we enter the coordinates.
+In normally system gives 2 alternative Routes after entering the origin and destination coordinates. But sometimes 
+System gives only 1 Route as output. In order to avoid breaking the loop when code runs you have to add 'try and except'
+before Route 2 . If site doesn't give the second alternative then code will try and pass the next query without any 
+problem. 
+
+System allows max 144 or 149 hits at once!if you want to scrape more than this number of points so you should limit your 
+loop by 149 . After scraping the data then keep it in csv file and try for the next new 149 points and so on. After you 
+download as much as you need the data then go and append them in one csv file by Panda. I scrapped more than 3,000 points
+of data by this way. Here you can try more than 149 hits at once see if it works. I encourage you to try for more than this 
+limited number. It may works for you. But I get the following Error message when I try for more than 149 points at once : "MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=50484): Max retries exceeded with url: /session/a570dcb07d487bc27b42748a3a1f08e1/timeouts/implicit_wait (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x12034f470>: Failed to establish a new connection: [Errno 61] Connection refused',))"
+
+
+TASK 2: scrape real data from NAVBUG - https://www.navbug.com/massachusetts/medford_traffic.htm
+
+OVERVIEW:
+
+What is Navbug :
+	An alternative site for Mass511 or twitter 
+	Shows live traffic map
+	No choice for origin & destination
+	Live news about the traffic
+	Don’t give route options but keywords in the news are helpful
+
+Coding:
+	Scrape the news titles , subtitles and stories
+	Scrape related roads
+	Scrape the key words e.g., ‘Road Close’ , ‘Construction’ in order to destroy the mentioned road in the Model
+	263 rows scraped
+
+
